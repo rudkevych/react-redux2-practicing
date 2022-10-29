@@ -1,7 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialCartState = {
-  isOpen: false,
+  items: [],
+  totalQuantity: 100
 };
 const cartSlice = createSlice({
   name: 'cart',
