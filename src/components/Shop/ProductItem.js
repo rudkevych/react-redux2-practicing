@@ -5,10 +5,10 @@ import classes from './ProductItem.module.css';
 
 const ProductItem = (props) => {
   const dispatch = useDispatch();
-  const { title, price, description } = props;
+  const { title, price, description, id } = props;
 
   const addItemHandler = () => {
-    dispatch(cartActions.addItem())
+    dispatch(cartActions.addItem({title, price, description, id}));
   }
 
   return (
