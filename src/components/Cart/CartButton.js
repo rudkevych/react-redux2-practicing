@@ -1,12 +1,12 @@
 import { useDispatch } from 'react-redux';
-import { cartActions } from '../../store';
+import { uiActions } from '../../store/ui-slice';
 import classes from './CartButton.module.css';
 
 const CartButton = (props) => {
   const dispatch = useDispatch();
 
   const toggleCartHandler = event => {
-    dispatch(cartActions.toggle());
+    dispatch(uiActions.toggleCartView());
   }
 
   return (
