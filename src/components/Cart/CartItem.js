@@ -4,7 +4,6 @@ import classes from './CartItem.module.css';
 
 const CartItem = (props) => {
   const dispatch = useDispatch();
-  const cart = useSelector(state => state.cart);
   const { title, quantity, total, price, id} = props.item;
 
   const addItemHandler = () => {
