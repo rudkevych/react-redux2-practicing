@@ -11,7 +11,10 @@ export const sendCartData = (cart) => {
         'https://react-redux2-practicing-default-rtdb.firebaseio.com/cart.json',
         {
           method: 'PUT',
-          body: JSON.stringify(cart),
+          body: JSON.stringify({
+            items: cart.items,
+            totalAmount: cart.totalAmount,
+          }),
         }
       );
     };
@@ -25,10 +28,8 @@ export const sendCartData = (cart) => {
   };
 };
 
-export const getCartData = (cart) => {
+export const getCartData = () => {
   return async (dispatch) => {
-    dispatch(uiActions.showNotification(notificationTypes.pending));
-
     const updateCart = async () => {
       const response = await fetch(
         'https://react-redux2-practicing-default-rtdb.firebaseio.com/cart.json'
@@ -40,7 +41,6 @@ export const getCartData = (cart) => {
     try {
       const result = await updateCart();
       dispatch(cartActions.replaceCart(result));
-      dispatch(uiActions.showNotification(notificationTypes.success));
     } catch {
       dispatch(uiActions.showNotification(notificationTypes.error));
     }
