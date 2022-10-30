@@ -4,18 +4,19 @@ import Cart from './components/Cart/Cart';
 import Layout from './components/Layout/Layout';
 import Products from './components/Shop/Products';
 import Notification from './components/UI/Notification';
-import { uiActions } from './store/ui-slice';
-import { sendCartData } from './store/cart-slice';
+import { getCartData, sendCartData } from './store/cart-actions';
 
 let isInitial = true;
 
 function App() {
   const dispatch = useDispatch();
   const cartIsVisible = useSelector((state) => state.ui.cartIsVisible);
-  const cart = useSelector((state) => state.cart.items);
+  const cart = useSelector((state) => state.cart);
   const notification = useSelector((state) => state.ui.notification);
 
   useEffect(() => {
+    dispatch(getCartData(cart))
+
     if (isInitial) {
       isInitial = false;
       return;
